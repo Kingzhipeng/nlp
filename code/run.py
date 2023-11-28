@@ -5,6 +5,7 @@ import numpy as np
 from train_eval import train, init_network
 from importlib import import_module
 import argparse
+from torch.backends import cudnn
 
 parser = argparse.ArgumentParser(description='Chinese Text Classification')
 parser.add_argument('--model', type=str, required=True, help='choose a model: TextCNN, TextRNN, FastText, TextRCNN, TextRNN_Att, DPCNN, Transformer')
@@ -21,6 +22,7 @@ if __name__ == '__main__':
     if args.embedding == 'random':
         embedding = 'random'
     model_name = args.model  # 'TextRCNN'  # TextCNN, TextRNN, FastText, TextRCNN, TextRNN_Att, DPCNN, Transformer
+    # 报错可忽略，不影响
     if model_name == 'FastText':
         from utils_fasttext import build_dataset, build_iterator, get_time_dif
         embedding = 'random'
